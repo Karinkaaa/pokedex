@@ -1,19 +1,29 @@
+import { Grid, Skeleton } from "@mui/material";
 import React from "react";
 import { v4 as uuid } from "uuid";
-import { Grid } from "@mui/material";
-import { useGetPokemonsQuery } from "../../redux/api";
+import { IPokemonInfo } from "../../types";
 import { PokemonCard } from "./PokemonCard";
 
-export const Pokemons: React.FC = () => {
-  const { data } = useGetPokemonsQuery();
+interface Props {
+  pokemons: IPokemonInfo[];
+  isLoading: boolean;
+  limit: number;
+}
 
+export const Pokemons: React.FC<Props> = ({ pokemons, isLoading, limit }) => {
   return (
     <Grid container justifyContent="center" spacing={3}>
-      {data?.map((item) => (
-        <Grid key={uuid()} item xs={4}>
-          <PokemonCard name={item.name} />
+      {pokemons?.map((item) => (
+        <Grid key={item.id} item xs={4}>
+          <PokemonCard pokemon={item} />
         </Grid>
       ))}
+      {isLoading &&
+        new Array(limit).fill(0).map(() => (
+          <Grid key={uuid()} item xs={4}>
+            <Skeleton variant="rectangular" width={210} height={320} />
+          </Grid>
+        ))}
     </Grid>
   );
 };

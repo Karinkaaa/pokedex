@@ -10,22 +10,20 @@ import {
 import React from "react";
 import { v4 as uuid } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useGetPokemonInfoByNameQuery } from "../../redux/api";
-import { setPokemon } from "../../redux/slice";
-import { IPokemonType } from "../../types";
+import { setChosenPokemon } from "../../redux/slice";
 import { typeColors } from "../../utils/typeColors";
+import { IPokemonInfo, IPokemonType } from "../../types";
 
 interface Props {
-  name: string;
+  pokemon: IPokemonInfo;
 }
 
-export const PokemonCard: React.FC<Props> = ({ name }) => {
+export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const dispatch = useAppDispatch();
-  const pokemon = useAppSelector((state) => state.pokemon.info);
-  const { data } = useGetPokemonInfoByNameQuery(name);
+  const chosen = useAppSelector((state) => state.pokemon.info);
 
   const handleClick = () => {
-    data && dispatch(setPokemon(data));
+    dispatch(setChosenPokemon(pokemon));
   };
 
   return (
@@ -33,7 +31,7 @@ export const PokemonCard: React.FC<Props> = ({ name }) => {
       sx={{
         maxWidth: 300,
         boxShadow: "1px 1px 5px gray",
-        bgcolor: pokemon?.id === data?.id ? "aliceblue" : "white",
+        bgcolor: pokemon?.id === chosen?.id ? "aliceblue" : "white",
         "&:hover": {
           cursor: "pointer",
           bgcolor: "aliceblue",
@@ -44,8 +42,8 @@ export const PokemonCard: React.FC<Props> = ({ name }) => {
     >
       <CardMedia
         component="img"
-        image={data?.sprites?.other.dream_world.front_default}
-        alt={name}
+        image={pokemon?.sprites?.other.dream_world.front_default}
+        alt={pokemon.name}
         sx={{ height: 200, objectFit: "contain", p: 2 }}
       />
       <Divider />
@@ -56,10 +54,10 @@ export const PokemonCard: React.FC<Props> = ({ name }) => {
           variant="h5"
           sx={{ fontWeight: 700 }}
         >
-          {name}
+          {pokemon.name}
         </Typography>
-        <Stack direction="row" spacing={1} useFlexGap flexWrap={"wrap"}>
-          {data?.types.map((item: IPokemonType) => (
+        <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+          {pokemon?.types.map((item: IPokemonType) => (
             <Chip
               key={uuid()}
               label={item.type.name}
