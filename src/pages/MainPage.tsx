@@ -1,14 +1,17 @@
 import React from "react";
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from "@mui/material";
-import { PokemonInfo } from "../components/PokemonInfo";
-import { Pokemons } from "../components/Pokemons";
+import { useAppSelector } from "../hooks";
+import { PokemonInfo } from "../components/pokemon-info";
+import { Pokemons } from "../components/pokemons";
 
 export const MainPage: React.FC = () => {
+  const pokemon = useAppSelector((state) => state.pokemon.info);
+
   return (
     <Box>
       <CssBaseline />
       <AppBar>
-        <Toolbar sx={{ justifyContent: "center" }}>
+        <Toolbar sx={{ justifyContent: "center", bgcolor: "#5600b1" }}>
           <Typography variant={"h4"}>Pokedex</Typography>
         </Toolbar>
       </AppBar>
@@ -19,7 +22,7 @@ export const MainPage: React.FC = () => {
             <Pokemons />
           </Box>
           <Box gridColumn="span 5">
-            <PokemonInfo name={"bulbasaur"} />
+            {pokemon && <PokemonInfo pokemon={pokemon} />}
           </Box>
         </Box>
       </Box>

@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 import { Grid } from "@mui/material";
-import { useGetPokemonsQuery } from "../redux/api";
+import { useGetPokemonsQuery } from "../../redux/api";
 import { PokemonCard } from "./PokemonCard";
 
 export const Pokemons: React.FC = () => {
