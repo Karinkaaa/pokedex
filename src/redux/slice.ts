@@ -6,6 +6,8 @@ interface IState {
   list: IPokemonInfo[];
   page: number;
   limit: number;
+  filters: string[];
+  isOpenDrawer: boolean;
 }
 
 const initialState: IState = {
@@ -13,12 +15,17 @@ const initialState: IState = {
   list: [],
   page: 0,
   limit: 12,
+  filters: [],
+  isOpenDrawer: false,
 };
 
 export const pokemonSlice = createSlice({
   name: "pokemon",
   initialState,
   reducers: {
+    setPokemons: (state, action: PayloadAction<IPokemonInfo[]>) => {
+      state.list = action.payload;
+    },
     addPokemons: (state, action: PayloadAction<IPokemonInfo[]>) => {
       state.list = [...state.list, ...action.payload];
     },
@@ -28,7 +35,20 @@ export const pokemonSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
+    setFilters: (state, action: PayloadAction<string[]>) => {
+      state.filters = action.payload;
+    },
+    setDrawer: (state, action: PayloadAction<boolean>) => {
+      state.isOpenDrawer = action.payload;
+    },
   },
 });
 
-export const { addPokemons, setChosenPokemon, setPage } = pokemonSlice.actions;
+export const {
+  setPokemons,
+  addPokemons,
+  setChosenPokemon,
+  setPage,
+  setFilters,
+  setDrawer,
+} = pokemonSlice.actions;

@@ -23,22 +23,33 @@ export const PokemonInfo: React.FC<Props> = ({ pokemon }) => {
   return (
     <Card
       sx={{
-        maxWidth: 400,
-        p: 2,
         boxShadow: "1px 1px 5px gray",
         position: "sticky",
-        top: "25%",
+        top: "20%",
       }}
     >
       <CardMedia
         component="img"
         image={pokemon.sprites.other.dream_world.front_default}
         alt={pokemon.name}
-        sx={{ height: 200, objectFit: "contain", p: 2 }}
+        sx={{ height: 200, objectFit: "contain", px: 2, py: 3 }}
       />
       <Divider />
       <CardContent sx={{ textAlign: "center" }}>
-        <Typography gutterBottom variant="h4" fontWeight={700} component="div">
+        <Typography
+          gutterBottom
+          fontWeight={700}
+          component="div"
+          sx={(theme) => ({
+            fontSize: "x-large",
+            [theme.breakpoints.up("md")]: {
+              fontSize: "xx-large",
+            },
+            [theme.breakpoints.up("xl")]: {
+              fontSize: "xxx-large",
+            },
+          })}
+        >
           {pokemon.name} {getCode(pokemon.id)}
         </Typography>
 
