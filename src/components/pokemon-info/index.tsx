@@ -42,11 +42,8 @@ export const PokemonInfo: React.FC<Props> = ({ pokemon }) => {
           component="div"
           sx={(theme) => ({
             fontSize: "x-large",
-            [theme.breakpoints.up("md")]: {
-              fontSize: "xx-large",
-            },
             [theme.breakpoints.up("xl")]: {
-              fontSize: "xxx-large",
+              fontSize: "xx-large",
             },
           })}
         >

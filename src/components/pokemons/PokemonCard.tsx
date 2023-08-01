@@ -24,7 +24,7 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
 
   const handleChoosePokemon = () => {
     dispatch(setChosenPokemon(pokemon));
-    setTimeout(() => dispatch(setDrawer(true)), 1); // for smooth scrolling
+    setTimeout(() => dispatch(setDrawer(true)), 1); 
   };
 
   const handleSetFilters = (filter: string) => {
@@ -60,11 +60,8 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           fontWeight={700}
           sx={(theme) => ({
             fontSize: "large",
-            [theme.breakpoints.up("md")]: {
-              fontSize: "x-large",
-            },
             [theme.breakpoints.up("xl")]: {
-              fontSize: "xx-large",
+              fontSize: "x-large",
             },
           })}
         >
