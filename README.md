@@ -1,3 +1,8 @@
+## [Demo version](https://karinkaaa.github.io/pokedex/)
+
+#### Preview:
+![alt text](/public/preview.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
