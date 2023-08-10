@@ -1,7 +1,7 @@
 ## [Demo version](https://karinkaaa.github.io/pokedex/)
 
 #### Preview:
-![alt text](/public/preview.png)
+![preview](/public/preview.png)
 
 # Getting Started with Create React App
 
