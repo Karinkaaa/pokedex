@@ -61,7 +61,9 @@ export const MainPage: React.FC = () => {
       <CssBaseline />
       <AppBar>
         <Toolbar sx={{ justifyContent: "center" }}>
-          <Typography variant="h4">Pokedex</Typography>
+          <Typography variant="h4" position="absolute" left="50vw">
+            Pokedex
+          </Typography>
         </Toolbar>
       </AppBar>
       <Toolbar />
